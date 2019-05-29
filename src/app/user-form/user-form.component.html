@@ -1,0 +1,185 @@
+  <form clrForm clrLayout="vertical" [formGroup]="form" (submit)="onSubmit()">
+     <section class="title">
+          <h1>Hello {{user?.otherNames?.split(' ')[0]}}!</h1>
+          <h6 class="hint">Update your details below.</h6>
+      </section>
+
+    
+    
+    <!-- <clr-input-container>
+        <label>Last Name</label>
+        
+    </clr-input-container> -->
+
+    <div class="form-container">
+
+      <div class="clr-row mt-2 centered-row sm-block">
+
+        <div class="col">
+<!--          imageSource="../../assets/images/african-woman-svgrepo-com.svg"-->
+          <app-image-control uploadLabel="Upload" height="120"
+                             uploadRoute="uploadPassport"
+                              [imageSource]="user?.passport ? user?.passport.url : passportPlaceholder">
+          </app-image-control>
+
+          <clr-tooltip>
+            <label class="clr-control-label">Passport</label>
+            <clr-icon clrTooltipTrigger shape="info-circle" size="18"></clr-icon>
+            <clr-tooltip-content [clrSize]="screenWidth > 768 ? 'lg' : 'sm'" clrPosition="bottom-right" *clrIfOpen>
+              <span>Upload Specifications</span>
+              <br><br>
+              <ul>
+                <li>Image should be taken in a white background.</li>
+                <li>Image should not be larger than 2MB.</li>
+              </ul>
+            </clr-tooltip-content>
+          </clr-tooltip>
+        </div>
+
+        <!--
+        <div style="display: flex;flex-direction: column;align-items: center;">
+          <div class="img-upload">
+            <img src="../../assets/images/african-woman-svgrepo-com.svg" alt="" height="120" width="auto">
+
+            <button class="btn btn-primary btn-block upload-card" tabindex="-1">
+                <span style="font-size: 10px">Upload</span>
+                <clr-icon shape="upload-cloud" style="margin-left: 3px;"></clr-icon>
+            </button>
+          </div>
+
+          <label class="clr-control-label">Passport</label>
+        </div>
+        -->
+      </div>
+
+      <div class="clr-row mt-2 sm-block">
+        <clr-input-container class="clr-col-6 is-full-width">
+          <label>Last Name</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="lastName"/>
+        </clr-input-container>
+
+        <clr-input-container class="clr-col-6 is-full-width">
+          <label>Other Names</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="otherNames"/>
+        </clr-input-container>
+      </div>
+
+      <div class="clr-form-control">
+          <label for="select-full" class="clr-control-label">State Of Origin</label>
+          <div class="clr-control-container is-full-width">
+            <div class="clr-select-wrapper is-full-width">
+              <select id="select-full" class="clr-select is-full-width" formControlName="stateOfOrigin">
+                <option *ngFor="let state of states">
+                  {{state?.name | uppercase}}
+                </option>
+              </select>
+            </div>
+          </div>
+      </div>
+
+      <div class="clr-row sm-block">
+        <clr-date-container class="clr-col-6 is-full-width">
+          <label>Date Of Birth</label>
+          <input type="date" clrDate size="28" formControlName="dateOfBirth">
+        </clr-date-container>
+
+        
+        <div class="clr-form-control clr-col-6">
+          <label for="select-full" class="clr-control-label">Gender</label>
+          <div class="clr-control-container is-full-width">
+            <div class="clr-select-wrapper is-full-width">
+              <select class="clr-select is-full-width" formControlName="gender">
+                <option value="Male">MALE</option>
+                <option value="Female">FEMALE</option>
+              </select>
+            </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="clr-form-control">
+        <label for="select-full" class="clr-control-label">Marital Status</label>
+        <div class="clr-control-container is-full-width">
+          <div class="clr-select-wrapper is-full-width">
+            <select class="clr-select is-full-width" formControlName="maritalStatus">
+              <option value="Single">SINGLE</option>
+              <option value="Married">MARRIED</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="clr-row sm-block">
+        <clr-input-container class="clr-col-12 is-full-width">
+          <label>Qualification</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="qualification" />
+        </clr-input-container>
+      </div>
+
+      <div class="clr-row sm-block">
+        <clr-input-container class="clr-col-6 is-full-width">
+          <label>Rank</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="rank" />
+        </clr-input-container>
+
+        <clr-input-container class="clr-col-6 is-full-width">
+          <label>Department</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="department" />
+        </clr-input-container>                
+      </div>
+      
+      
+      <div class="clr-row sm-block">
+        <clr-input-container class="clr-col-12 is-full-width">
+          <label>Location</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="location" />
+        </clr-input-container>
+      </div>
+
+      <div class="clr-row mt-2 right-aligned-row">
+        <div class="col">
+          <app-image-control height="72" controlLabel="Signature"
+                             [imageSource]="user?.signature ? user?.signature.url : signaturePlaceholder"
+                             uploadRoute="uploadSignature">
+          </app-image-control>
+
+          <clr-tooltip>
+            <label class="clr-control-label">Signature</label>
+            <clr-icon clrTooltipTrigger shape="info-circle" size="18"></clr-icon>
+            <clr-tooltip-content [clrSize]="screenWidth > 768 ? 'lg' : 'sm'" clrPosition="bottom-left" *clrIfOpen>
+              <span>Upload Specifications</span>
+              <br><br>
+              <ul>
+                <li>Image should not be larger than 2MB.</li>
+              </ul>
+            </clr-tooltip-content>
+
+          </clr-tooltip>
+        </div>
+      </div>
+
+      <!--
+      <div class="clr-row mt-2 right-aligned-row">
+        <div class="btn-margin" style="display: flex;flex-direction: column;align-items: center;">
+          <div class="img-upload">
+            <img class="upload-form" 
+              src="../../assets/images/pen-svgrepo-com.svg" alt="" 
+              style="margin-left: auto;display: block;margin-right: auto;"
+              height="72" width="auto" >
+
+            <button class="btn btn-primary btn-block upload-card" tabindex="-1">
+                <clr-icon shape="upload-cloud"></clr-icon>
+            </button>
+          </div>
+
+          <label class="clr-control-label">Signature</label>
+        </div>
+      </div>
+      -->
+
+      <div class="clr-row right-aligned-row">
+        <button style="align-self: center;" class="btn btn-success mt-2">Update</button>
+      </div>
+      
+    </div>
+</form>

@@ -1,0 +1,12 @@
+<div class="load-wrapper" [ngClass]="{'active': active}" [style.opacity]="opacity">
+  <p class="loader">
+    <span class="spinner spinner-lg">
+      Loading...
+    </span>
+    <br *ngIf="message != null && message.length > 0"/>
+    <span style="text-align: center" *ngIf="message != null && message.length > 0">
+        {{message}}
+    </span>
+  </p>
+</div>
+

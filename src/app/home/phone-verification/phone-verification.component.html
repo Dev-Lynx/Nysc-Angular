@@ -1,0 +1,80 @@
+<div class="login">
+  <app-loader [active]="loaderActive" [message]="loaderMessage"></app-loader>
+  <img class="logo" src="assets/images/Nysc-Logo.png" height="128px" width="auto"/>
+
+  <section class="title">
+      <h3 class="welcome">Just One More Step!</h3>
+      
+      <h5 class="hint">
+        A verification code has been sent to your phone number
+        <span *ngIf="user?.phoneNumber">
+          (<b>{{user?.phoneNumber}}</b>)
+        </span>.
+        Enter the code to continue.
+      </h5>
+  </section>  
+
+  <img class="logo mt-1" src="assets/images/undraw_mail.svg" height="128px" width="auto">
+
+
+  <form clrForm clrLayout="vertical" [formGroup]="form">
+    <div class="clr-row">
+      <clr-icon shape="mobile" class="is-solid clr-col-1"></clr-icon>
+      <clr-input-container class="clr-col-11 is-full-width">
+
+        <input type="text" formControlName="password" placeholder="Enter Verification Code" clrInput required>
+
+        <clr-control-error *ngIf="password.getError('required') && form.dirty">This field is required.</clr-control-error>
+        <clr-control-error *ngIf="password.getError('pattern') && form.dirty">Only numbers are allowed.</clr-control-error>
+      </clr-input-container>
+    </div>
+
+<!--     <div class="clr-form-control">-->
+<!--      <div class="clr-control-container">-->
+<!--        <div class="clr-input-wrapper">-->
+<!--          <clr-icon shape="mobile" class="is-solid"></clr-icon>-->
+<!--          <input type="text" formControlName="password" placeholder="Enter Verification Code" class="clr-input" required>-->
+
+<!--          <clr-control-error *ngIf="password.getError('required') && form.dirty">This field is required.</clr-control-error>-->
+<!--          <clr-control-error *ngIf="password.getError('pattern') && form.dirty">Only numbers are allowed.</clr-control-error>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   <div class="timer clr-row">-->
+<!--     <p>-->
+<!--       The verification code will expire in 30 seconds.-->
+<!--     </p>-->
+<!--   </div>-->
+
+
+
+  </form>
+
+  <clr-alert class="mw-15" [clrAlertType]="'info'"
+             [clrAlertClosable]="false" [clrAlertClosed]="!checkpointActive || !timerActive"
+              size="compact">
+    <clr-alert-item>
+        <span class="alert-text">
+            The verification code will expire in {{timeLeft}} seconds.
+        </span>
+    </clr-alert-item>
+  </clr-alert>
+
+  <clr-alert class="mw-15" [clrAlertType]="'danger'"
+             [clrAlertClosed]="!verificationFailed"
+             [clrAlertClosable]="false">
+    Invalid Phone Verification Password. Please try again.
+  </clr-alert>
+
+
+
+  <button class="btn" (click)="goBack()">Back</button>
+  <button class="btn btn-success"
+          [ngClass]="{'btn-warning': checkpointActive && !timerActive}"
+          (click)="onSubmit()"
+          [clrLoading]="confirmationState">
+    {{checkpointActive && !timerActive ? 'Resend' : 'Confirm'}}
+  </button>
+  
+</div>

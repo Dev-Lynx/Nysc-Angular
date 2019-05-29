@@ -1,0 +1,50 @@
+<form class="login" [formGroup]="form">
+    <app-loader [active]="loaderActive" [message]="loaderMessage" opacity=".7"></app-loader>
+    <img class="logo" src="assets/images/Nysc-Logo.png" alt="NYSC Logo" height="128px" width="auto"/>
+    <section class="title">
+        <h3 class="welcome">Welcome to the</h3>
+        Official NYSC Portal
+        <h5 class="hint">Enter your File Number and Password to sign in.</h5>
+    </section>
+    <div class="login-group">
+        <clr-select-container>
+            <select clrSelect name="type" formControlName="role">
+                <option value="regularUser">Regular User</option>
+                <option value="administrator">Administrator</option>
+            </select>
+        </clr-select-container>
+
+        <clr-input-container>
+            <input type="text" name="username" clrInput placeholder="File Number" formControlName="username" />
+            <clr-control-error *ngIf="username.getError('required')">This field is required.</clr-control-error>
+            <clr-control-error *ngIf="username.getError('pattern')">Only numbers are allowed.</clr-control-error>
+        </clr-input-container>
+        <clr-password-container>
+            <input type="password" name="password" clrPassword placeholder="Password" formControlName="password" />
+            <clr-control-error *ngIf="password.getError('required')">This field is required.</clr-control-error>
+        </clr-password-container>
+      <!--
+        <clr-checkbox-wrapper>
+            <label>Remember me</label>
+            <input type="checkbox" name="rememberMe" clrCheckbox formControlName="rememberMe" />
+        </clr-checkbox-wrapper>
+      -->
+        <div class="error" [ngClass]="{'active': credentialsInvalid}" [ngClass]="{'inactive': !credentialsInvalid}">
+            Invalid File Number or Password
+        </div>
+
+        <div class="error" [ngClass]="{'active': loginTimeout}" [ngClass]="{'inactive': !loginTimeout}">
+          Login Timeout. Please check your internet connection.
+        </div>
+
+        <div class="error" [ngClass]="{'active': serverError}" [ngClass]="{'inactive': !serverError}">
+          Oops! Something went wrong. Try again later.
+        </div>
+
+        <div class="error" [ngClass]="{'active': adminError}" [ngClass]="{'inactive': !adminError}">
+          Your account could not be found. Are you sure you're an administrator.
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" [clrLoading]="loginLoadingState">LOGIN</button>
+        <!-- <a href="javascript://" class="signup">Sign up for a Company ID</a> -->
+    </div>
+</form>

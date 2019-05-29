@@ -1,0 +1,36 @@
+//#region Header
+header,
+  .header {
+    background-color: $clr-header-bgColor;
+
+    &.header-1 {
+      background-color: $clr-header-bgColor;
+    }
+
+    &.header-2 {
+      //Hardcoded because this color is not in the color palette. Its reserved for headers only
+      background-color: $clr-header-2-bg-color;
+    }
+
+    &.header-3 {
+      background-color: $clr-header-3-bg-color;
+    }
+
+    &.header-4 {
+      background-color: $clr-green;//header-4-bg-color;
+    }
+
+    &.header-5 {
+      background-color: $clr-header-5-bg-color;
+    }
+
+    &.header-6 {
+      background-color: $clr-header-6-bg-color;
+    }
+
+    &.header-7 {
+      //Hardcoded because this color is not in the color palette. Its reserved for headers only
+      background-color: $clr-header-7-bg-color;
+    }
+  }
+//#endregion

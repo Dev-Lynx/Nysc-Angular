@@ -1,0 +1,38 @@
+<div [uploader]="uploader" (onFileDrop)="fileSelected($event)" (fileOver)="fileOverBase($event)" class="zero" ng2FileDrop>
+  <div class="img-upload" [ngClass]="{'fileOver': hasBaseDropZoneOver}">
+    <app-loader [active]="uploader.isUploading"></app-loader>
+
+    <img src="{{imageSource}}" alt=""
+         height="{{height}}"
+         width="auto">
+
+    <button class="btn btn-primary btn-block upload-card" (click)="fileInput.click()"
+            tabindex="-1" [ngClass]="{'fileOver': hasBaseDropZoneOver}">
+      <span style="font-size: 10px">{{uploadLabel}}</span>
+      <clr-icon shape="upload-cloud" style="margin-left: 3px;"></clr-icon>
+    </button>
+
+
+
+
+    <span class="upload-wrapper">
+      <input type="file" accept="image/*" #fileInput ng2FileSelect [uploader]="uploader" (onFileSelected)="fileSelected($event)" />
+    </span>
+  </div>
+
+  <!--
+  <clr-tooltip>
+    <label class="clr-control-label">{{controlLabel}}</label>
+    <clr-icon clrTooltipTrigger shape="info-circle" size="18"></clr-icon>
+    <clr-tooltip-content clrSize="lg" *clrIfOpen>
+      <span>Upload Specifications</span>
+      <ul>
+        <li>Image should be taken in a white background.</li>
+        <li>Image should not be larger than 2MB.</li>
+      </ul>
+    </clr-tooltip-content>
+
+  </clr-tooltip>
+  -->
+
+</div>

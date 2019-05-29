@@ -1,0 +1,21 @@
+.logo {
+    align-self: center;
+}
+
+.mw-15 {
+  max-width: 15rem;
+}
+
+.btn {
+  transition: all .5s ease-in-out;
+}
+
+form {
+  margin-bottom: 1rem;
+}
+
+clr-icon {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 1.2rem;
+}

@@ -1,0 +1,12 @@
+// Clarity Dependency SCSS
+@import "../node_modules/@clr/ui/src/utils/dependencies.clarity"; // Includes light theme
+
+
+
+// Clarity Component SCSS
+@import "../node_modules/@clr/ui/src/utils/components.clarity";
+
+
+// From Angular.json
+// "node_modules/@clr/icons/clr-icons.min.css",
+// "node_modules/@clr/ui/clr-ui.min.css",

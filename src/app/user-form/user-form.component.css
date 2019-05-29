@@ -1,0 +1,130 @@
+form {
+    margin: 40px auto 40px 50px;
+}
+
+.passport {
+    margin-top: 24px;
+}
+
+.centered-row {
+    justify-content: center;
+}
+
+.right-aligned-row {
+    justify-content: flex-end;
+    margin-right: 0;
+}
+
+.btn-margin {
+    margin: .25rem .5rem .25rem 0;
+}
+
+.img-upload {
+    border: solid .5px #006A91;
+    overflow: hidden;
+}
+
+.img-upload:hover .upload-card {
+    bottom: 24px;
+}
+
+.upload-card {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 24px;
+    /* background-color: #2F8400; */
+    color: #FFF;
+    margin-bottom: -24px;
+    align-items: center;
+    justify-content: center;
+    bottom: 0px;
+
+    border-radius: 0px;
+
+    line-height: inherit;
+    /*line-spacing: inherit;*/
+
+
+    -webkit-transition: bottom .5s ease-in-out;
+    -moz-transition: bottom .5s ease-in-out;
+    -o-transition: bottom .5s ease-in-out;
+    transition: bottom .5s ease-in-out;
+}
+
+.upload-card clr-icon {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.btn {
+  margin-right: 0;
+}
+
+/* .upload-card * {
+    color: #FFF;
+}
+
+.upload-card *:visited {
+    color: #FFF;
+} */
+
+
+
+
+.form-container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    max-width: 552px;
+}
+ 
+clr-input-container.is-full-width,
+clr-date-container.is-full-width {
+    display: flex;
+    align-items: stretch;
+}
+
+div.is-full-width,
+input.is-full-width,
+select.is-full-width {
+    width: 100%
+}
+
+.clr-input-group {
+    width: 100%;
+}
+
+clr-tooltip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: .3rem;
+}
+
+
+/* #region Media Queries */
+@media only screen and (max-width: 600px) {
+
+    :host {
+      display: flex;
+  }
+
+  form {
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .sm-block {
+      display: block;
+  }
+
+  .clr-col-6 {
+      max-width: initial;
+  }
+
+  .clr-control-container {
+      width: 100%;
+  }
+}
+/* #endregion */

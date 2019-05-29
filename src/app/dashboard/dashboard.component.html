@@ -1,0 +1,31 @@
+
+<clr-main-container class="main-container">
+    <clr-alerts>
+      <clr-alert *ngFor="let alert of alertService.alerts"
+                 [clrAlertType]="alert.type"
+                 [clrAlertAppLevel]="true"
+                 [clrAlertClosable]="alert.closable">
+        <div class="alert-item">
+          <span class="alert-text">{{alert.text}}</span>
+          <div class="alert-actions"
+               *ngIf="alert.action">
+            <button class="btn alert-action">{{alert.action}}</button>
+          </div>
+        </div>
+      </clr-alert>
+    </clr-alerts>
+
+    <app-nav></app-nav>
+
+  <app-loader [active]="userForm.busy" [message]="userForm.busyMessage"></app-loader>
+  <!--
+    <div class="wt-bg"></div>
+    <div class="img-bg"></div>
+  -->
+
+    <div class="content-container">
+        <div class="content-area">        
+            <app-user-form #userForm></app-user-form>
+        </div>
+    </div>
+</clr-main-container>
