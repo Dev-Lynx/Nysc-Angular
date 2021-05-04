@@ -1,0 +1,51 @@
+<div class="phone-registration login">
+  <img class="logo" src="assets/images/Nysc-Logo.png" height="128px" width="auto"/>
+  
+  <section class="title">
+    <h3 class="welcome">
+      <span *ngIf="user;else hasUser">
+        Hi, {{user.lastName}}
+      </span>
+      
+      <ng-template #hasUser>
+        Hello there
+      </ng-template>
+    </h3>
+    
+    <h5 class="hint">
+      Link your phone number to your account
+      <!-- Enter your phone details below -->
+    </h5>
+  </section>  
+
+  <img class="logo mt-1" src="assets/images/undraw_product_teardown_elol.svg" height="128px" width="auto">
+
+  <form clrForm clrLayout="vertical" [formGroup]="form">
+    <div class="clr-row centered-form-row">
+      <clr-icon shape="mobile" class="is-solid clr-col-1"></clr-icon>
+      <clr-input-container class="clr-col-11 is-full-width">
+
+        <input type="text" formControlName="phone" placeholder="Enter Phone Number" clrInput required>
+
+        <clr-control-error *ngIf="phone.getError('required') && form.dirty;else numberCountError">This field is required.</clr-control-error>
+
+        <ng-template #numberCountError>
+          <clr-control-error *ngIf="(phone.getError('minlength') || phone.getError('maxlength'));else patternError">
+            Please enter your eleven digit phone number.
+          </clr-control-error>
+        </ng-template>
+
+        <ng-template #patternError>
+          <clr-control-error *ngIf="phone.getError('pattern')">Only numbers are allowed.</clr-control-error>
+        </ng-template>
+      </clr-input-container>
+
+      <!-- <span style="height: 150px;">
+        {{errors}}
+      </span> -->
+    </div>
+  </form>
+
+  <button class="btn" (click)="goBack()">Back</button>
+  <button class="btn btn-success" (click)="continue()" [disabled]="!canContinue">Continue</button>
+</div>

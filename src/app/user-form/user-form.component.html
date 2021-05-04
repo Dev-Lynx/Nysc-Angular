@@ -1,4 +1,4 @@
-  <form clrForm clrLayout="vertical" [formGroup]="form" (submit)="onSubmit()">
+  <form clrForm clrLayout="vertical" [formGroup]="form" (submit)="onSubmit($event)">
      <section class="title">
           <h1>Hello {{user?.otherNames?.split(' ')[0]}}!</h1>
           <h6 class="hint">Update your details below.</h6>
@@ -133,6 +133,13 @@
         <clr-input-container class="clr-col-12 is-full-width">
           <label>Location</label>
           <input clrInput type="text" required class="is-full-width" formControlName="location" />
+        </clr-input-container>
+      </div>
+
+      <div class="clr-row sm-block">
+        <clr-input-container class="clr-col-12 is-full-width">
+          <label>Next Of Kin</label>
+          <input clrInput type="text" required class="is-full-width" formControlName="nextOfKin" />
         </clr-input-container>
       </div>
 

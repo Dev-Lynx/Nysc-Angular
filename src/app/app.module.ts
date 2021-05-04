@@ -23,6 +23,7 @@ import { ImageControlComponent } from './utils/image-control/image-control.compo
 import {FileUploadModule} from 'ng2-file-upload';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { ErrorPageComponent } from './utils/error-page/error-page.component';
+import { PhoneRegistrationComponent } from './home/phone-registration/phone-registration.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ErrorPageComponent } from './utils/error-page/error-page.component';
       PhoneVerificationComponent,
       LoaderComponent,
       ImageControlComponent,
-      ErrorPageComponent
+      ErrorPageComponent,
+      PhoneRegistrationComponent
    ],
   imports: [
     BrowserModule,

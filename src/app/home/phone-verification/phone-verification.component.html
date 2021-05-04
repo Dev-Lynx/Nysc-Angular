@@ -3,7 +3,7 @@
   <img class="logo" src="assets/images/Nysc-Logo.png" height="128px" width="auto"/>
 
   <section class="title">
-      <h3 class="welcome">Just One More Step!</h3>
+      <h3 class="welcome">Just One Last Step!</h3>
       
       <h5 class="hint">
         A verification code has been sent to your phone number
@@ -72,6 +72,7 @@
   <button class="btn" (click)="goBack()">Back</button>
   <button class="btn btn-success"
           [ngClass]="{'btn-warning': checkpointActive && !timerActive}"
+          [disabled]="!canConfirm"
           (click)="onSubmit()"
           [clrLoading]="confirmationState">
     {{checkpointActive && !timerActive ? 'Resend' : 'Confirm'}}

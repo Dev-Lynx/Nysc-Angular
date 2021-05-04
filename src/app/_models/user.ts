@@ -3,6 +3,8 @@ import {Photo} from './photo';
 export class User {
   fileNo: string;
   phoneNumber: string;
+
+  hasPhoneNumber?: boolean;
   phoneNumberConfirmed?: boolean;
 
   lastName?: string;
@@ -15,6 +17,7 @@ export class User {
   rank?: string;
   qualification?: string;
   department?: string;
+  nextOfKin?: string;
   dateOfBirth?: Date;
   passport?: Photo;
   signature?: Photo;

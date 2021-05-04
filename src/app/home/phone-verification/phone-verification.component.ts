@@ -14,7 +14,6 @@ import {User} from '../../_models/user';
   styleUrls: ['./phone-verification.component.css']
 })
 export class PhoneVerificationComponent implements OnInit, AfterViewInit {
-  user: User;
   timerDuration = 300;
   timerCheckpoint = 180;
 
@@ -34,8 +33,17 @@ export class PhoneVerificationComponent implements OnInit, AfterViewInit {
   confirmationState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
   get password() { return this.form.get('password'); }
+  
+  get canConfirm() {
+    return this.form.valid;
+  }
+
   loaderActive: boolean;
   loaderMessage: string;
+
+  get user() {
+    return this.account.user;
+  }
 
   constructor(private auth: AuthService, private fb: FormBuilder,
               private router: Router, private account: AccountService) {
@@ -52,14 +60,29 @@ export class PhoneVerificationComponent implements OnInit, AfterViewInit {
   async ngAfterViewInit() {
     this.loaderActive = true;
     this.loaderMessage = 'Loading...';
-    this.user = await this.account.getUser().toPromise().catch(error => console.log(error)) as User;
     this.sendVerificationCode();
     this.loaderActive = false;
+
+    if (!this.user) {
+      await this.account.getUser()
+        .toPromise()
+        .then(x => {
+          if (!x.phoneNumber) {
+            this.goBack();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.goBack();
+        });
+    } else if (!this.user.phoneNumber) {
+      this.goBack();
+    }
   }
 
   //#region Verification
   sendVerificationCode() {
-    this.auth.sendVerification().subscribe(() => { this.activateTimer(); }, error => console.error(error));
+    this.auth.sendVerification(this.account.user.phoneNumber).subscribe(() => { this.activateTimer(); }, error => console.error(error));
   }
 
   confirmVerificationCode() {
@@ -109,6 +132,6 @@ export class PhoneVerificationComponent implements OnInit, AfterViewInit {
   async goBack() {
     this.timer.unsubscribe();
     this.timerActive = false;
-    await this.router.navigate(['../']);
+    await this.router.navigate(['/login/linkPhone']);
   }
 }

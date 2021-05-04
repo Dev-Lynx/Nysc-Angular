@@ -7,6 +7,7 @@ import {User} from '../_models/user';
 import {UIService} from '../_services/ui.service';
 import {AlertService} from '../_services/alert.service';
 import {AuthService} from '../_services/auth.service';
+import { SubmitterEvent } from "../_models/misc";
 
 @Component({
   selector: 'app-user-form',
@@ -31,6 +32,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     rank: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
     department: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
     location: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
+    nextOfKin: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
   });
 
   malePassportPlaceholder = 'assets/images/african-svgrepo-com.svg';
@@ -49,7 +51,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   get rank() { return this.form.get('rank'); }
   get department() { return this.form.get('department'); }
   get location() { return this.form.get('location'); }
-  //#endregion
+  get nextOfKin() { return this.form.get("nextOfKin"); }
+  //#endregion;
 
   states: IState[] = [];
 
@@ -118,6 +121,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     this.rank.setValue(this.user.rank);
     this.department.setValue(this.user.department);
     this.location.setValue(this.user.location);
+    this.nextOfKin.setValue(this.user.nextOfKin);
   }
 
   createUser(): User {
@@ -131,6 +135,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       gender: this.gender.value as string,
       maritalStatus: this.maritalStatus.value as string,
       qualification: this.qualification.value as string,
+      nextOfKin: this.nextOfKin.value as string,
       rank: this.rank.value as string,
       department: this.department.value as string,
       location: this.location.value as string
@@ -144,7 +149,14 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     this.screenWidth = window.innerWidth;
   }
 
-  async onSubmit() {
+  async onSubmit(e: SubmitterEvent) {
+    const isUpload = e.submitter.classList.contains("upload-btn");
+
+    if (isUpload) {
+      e.preventDefault();
+      return;
+    }
+
     this.busyMessage = 'Updating Details...';
     this.busy = true;
     let errorOccurred = false;

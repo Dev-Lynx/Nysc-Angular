@@ -14,7 +14,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   initialized = false;
   justLoggedIn = false;
-
+  verificationSent = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -39,8 +39,12 @@ export class AuthService {
     await this.router.navigate(['login']);
   }
 
-  sendVerification() {
-    return this.http.post(this.baseUrl + 'phone-verification', null);
+  sendVerification(phoneNumber?: string) {
+    this.verificationSent = true;
+    const phoneRoute = (phoneNumber ? `/${phoneNumber}` : '');
+    const url = this.baseUrl + 'phone-verification' + phoneRoute;
+    console.log("Sending Verification", phoneNumber, url);
+    return this.http.post(url, null);
   }
 
   verifyCode(code: string) {

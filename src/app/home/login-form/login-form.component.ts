@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit {
   get password() { return this.form.get('password'); }
   /*
 
-
+// ~~~`~
   get rememberMe() { return this.form.get('rememberMe'); }
   */
 
@@ -87,7 +87,10 @@ export class LoginFormComponent implements OnInit {
     const user = this.account.user;
     console.log(user);
 
-    if (!user.phoneNumberConfirmed) {
+
+    if (user.hasPhoneNumber === false) {
+      await this.router.navigate(['linkPhone'], { relativeTo: this.route } );
+    } else if (!user.phoneNumberConfirmed) {
       await this.router.navigate(['phoneVerification'], { relativeTo: this.route } );
     } else {
       await this.router.navigate(['dashboard']);

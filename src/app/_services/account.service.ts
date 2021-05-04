@@ -34,6 +34,6 @@ export class AccountService {
   }
 
   updateUser(user: User) {
-    return this.http.post(this.baseUrl + 'updateUser', user);
+    return this.http.post(this.baseUrl + 'update', user);
   }
 }
