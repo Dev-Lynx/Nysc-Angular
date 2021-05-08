@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
-import { AuthService } from '../../_services/auth.service';
+import { AuthService, AppRole } from '../../_services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ClrLoadingState} from '@clr/angular';
 import { timeout } from 'rxjs/operators';
 import {AccountService} from '../../_services/account.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {AlertService} from '../../_services/alert.service';
+import { OnChange } from "property-watch-decorator";
 
 @Component({
   selector: 'app-login-form',
@@ -16,8 +17,8 @@ import {AlertService} from '../../_services/alert.service';
 })
 export class LoginFormComponent implements OnInit {
   form = this.fb.group({
-    role: ['regularUser'],
-    username: ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])],
+    role: ['RegularUser'],
+    username: ['', Validators.compose([Validators.required])],
     password: ['', Validators.compose([Validators.required])],
     rememberMe: [false]
   });
@@ -39,13 +40,21 @@ export class LoginFormComponent implements OnInit {
 // ~~~`~
   get rememberMe() { return this.form.get('rememberMe'); }
   */
-
+  @OnChange(function(this: LoginFormComponent, value: boolean, change) {
+    if (value == false) {
+      this.username.setValidators([Validators.required, Validators.pattern("^[0-9]*$")]);
+    } else {
+      this.username.setValidators([Validators.required, Validators.pattern("^[a-z0-9._]+$")]);
+    }
+  })  
+  isBackOffice = false;
   baseUrl = environment.apiBase + 'auth/';
 
 
   constructor(private fb: FormBuilder, private router: Router,
               private auth: AuthService, private account: AccountService,
               private route: ActivatedRoute) {
+
     this.form.valueChanges.subscribe(() => {
       if (this.credentialsInvalid) {
         this.credentialsInvalid = false;
@@ -60,10 +69,19 @@ export class LoginFormComponent implements OnInit {
       if (this.adminError) {
         this.adminError = false;
       }
+      
+      this.isBackOffice = this.role.value === "Administrator";
     });
   }
 
   ngOnInit() {
+    // this.role.valueChanges.subscribe(x => {
+    //   this.isBackOffice = this.role.value === "Administrator";
+    //   this.username.updateValueAndValidity();
+    // })
+
+    
+    this.username.setValidators([Validators.required, Validators.pattern("^[0-9]*$")]);
   }
 
   async onSubmit() {
@@ -85,14 +103,17 @@ export class LoginFormComponent implements OnInit {
     this.loaderActive = false;
 
     const user = this.account.user;
-    console.log(user);
+    console.log("Login Complete", user);
 
-
-    if (user.hasPhoneNumber === false) {
+    if (this.auth.role === "Administrator") {
+      console.log("Admin login successful");
+      await this.router.navigate(["hq"]);
+    } else if (user.hasPhoneNumber === false) {
       await this.router.navigate(['linkPhone'], { relativeTo: this.route } );
     } else if (!user.phoneNumberConfirmed) {
       await this.router.navigate(['phoneVerification'], { relativeTo: this.route } );
     } else {
+      console.log("Going to dashboard");
       await this.router.navigate(['dashboard']);
     }
   }

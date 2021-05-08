@@ -1,0 +1,58 @@
+<div class="content-area">
+
+  <div class="flex">
+    <form action="">
+      <button class="btn btn-primary" size="sm" (click)="packageDialogActive = !packageDialogActive">
+        Upload Package
+        <clr-icon shape="upload"></clr-icon>
+
+        <!-- <input #uploadFile type="file" (change)="handleFileSelected($event)"  style="display:none;" /> -->
+      </button>
+    </form>
+
+    <div class="-mt-1.5 flex w-full hidden">
+      <!-- <div class="progress top mt-auto">
+        <progress value="50" max="100"></progress>
+      </div> -->
+
+      <div class="w-full">
+        <h6 class="p5">
+          Uploading: 
+          <!-- <span class="text-primary font-bold">
+            {{currentFile}}
+          </span> -->
+        </h6>
+
+        <div class="progress loop">
+          <progress></progress>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <clr-datagrid (clrDgRefresh)="handlePaginationChanged($event)">
+    <clr-dg-column [clrDgField]="'fileNo'">File No</clr-dg-column>
+    <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'otherNames'">Other Names</clr-dg-column>
+    <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+
+    <clr-dg-row *ngFor="let identity of identities.results">
+      <clr-dg-cell>{{identity.fileNo}}</clr-dg-cell>
+      <clr-dg-cell>{{identity.lastName}}</clr-dg-cell>
+      <clr-dg-cell>{{identity.otherNames}}</clr-dg-cell>
+      <clr-dg-cell>{{identity.gender}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+      <clr-dg-pagination id="clrPagination" #pagination 
+        [clrDgPageSize]="identities.pageSize" 
+        [clrDgPage]="identities.currentPage" 
+        [clrDgTotalItems]="identities.rowCount">
+        <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+
+  <app-hq-package-dialog [active]="packageDialogActive" (done)="queryIdentities()"></app-hq-package-dialog>
+</div>

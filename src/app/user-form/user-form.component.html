@@ -1,6 +1,6 @@
   <form clrForm clrLayout="vertical" [formGroup]="form" (submit)="onSubmit($event)">
-     <section class="title">
-          <h1>Hello {{user?.otherNames?.split(' ')[0]}}!</h1>
+     <section class="title" *ngIf="user">
+          <h1>Hello {{user.lastName}}!</h1>
           <h6 class="hint">Update your details below.</h6>
       </section>
 
@@ -17,10 +17,13 @@
 
         <div class="col">
 <!--          imageSource="../../assets/images/african-woman-svgrepo-com.svg"-->
-          <app-image-control uploadLabel="Upload" height="120"
+<!-- height="120" -->
+          <app-image-control uploadLabel="Upload"
                              uploadRoute="uploadPassport"
-                              [imageSource]="user?.passport ? user?.passport.url : passportPlaceholder">
+                              [imageSource]="user?.passport || passportPlaceholder">
           </app-image-control>
+
+          <!-- <img [src]="user.passport" *ngIf="user"> -->
 
           <clr-tooltip>
             <label class="clr-control-label">Passport</label>
@@ -146,7 +149,7 @@
       <div class="clr-row mt-2 right-aligned-row">
         <div class="col">
           <app-image-control height="72" controlLabel="Signature"
-                             [imageSource]="user?.signature ? user?.signature.url : signaturePlaceholder"
+                             [imageSource]="user?.signature || signaturePlaceholder"
                              uploadRoute="uploadSignature">
           </app-image-control>
 

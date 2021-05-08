@@ -2,9 +2,7 @@
   <div class="img-upload" [ngClass]="{'fileOver': hasBaseDropZoneOver}">
     <app-loader [active]="uploader.isUploading"></app-loader>
 
-    <img src="{{imageSource}}" alt=""
-         height="{{height}}"
-         width="auto">
+    <img src="{{imageSource}}" alt="" width="auto" class="w-auto" [ngStyle]="{ 'height': height + 'px' }">
 
     <button class="btn btn-primary btn-block upload-card upload-btn" (click)="fileInput.click()"
             tabindex="-1" [ngClass]="{'fileOver': hasBaseDropZoneOver}">

@@ -7,6 +7,8 @@ import { PhoneRegistrationComponent } from './home/phone-registration/phone-regi
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthGuard} from './_guards/auth.guard';
 import {VerificationGuard} from './_guards/verification.guard';
+import { AdminBaseComponent } from "./admin/admin-base/admin-base.component";
+import { HqDashboardComponent } from "./admin/hq-dashboard/hq-dashboard.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,6 +21,13 @@ const routes: Routes = [
       { path: 'phoneVerification', component: PhoneVerificationComponent },
       { path: 'linkPhone', component: PhoneRegistrationComponent },
       { path: '**', redirectTo: '', pathMatch: 'full' }
+    ]
+  },
+  {
+    path: "hq",
+    component: AdminBaseComponent,
+    children: [
+      { path: "", component: HqDashboardComponent }
     ]
   },
   {

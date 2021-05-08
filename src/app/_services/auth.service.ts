@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -5,16 +6,27 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 import {Router} from '@angular/router';
 
+export type AppRole = "RegularUser" | "Coordinator" | "Administrator";
+
+interface AuthToken {
+  rol: AppRole;
+  ver: 'True' | 'False';
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   baseUrl = environment.apiBase + 'auth/';
-  accessToken: any;
-  jwtHelper = new JwtHelperService();
+  accessToken: AuthToken;
+  private jwtHelper = new JwtHelperService();
   initialized = false;
   justLoggedIn = false;
   verificationSent = false;
+  
+  get role() {
+    return this.accessToken.rol;
+  }
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -29,6 +41,10 @@ export class AuthService {
           if (response) {
             localStorage.setItem('access_token', JSON.stringify(response.access_token));
             this.accessToken = this.jwtHelper.decodeToken(response.access_token);
+            
+            console.log(this.role);
+            console.log(this.accessToken);
+
             this.justLoggedIn = true;
           }
         }));
@@ -62,7 +78,7 @@ export class AuthService {
 
   userVerified() {
     if (!this.initialized) { this.init(); }
-    return this.accessToken.ver === 'True';
+    return this.accessToken.ver === "True";
   }
 
   loggedIn() {

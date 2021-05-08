@@ -1,0 +1,105 @@
+<clr-modal [(clrModalOpen)]="active">
+  <h3 class="modal-title">
+    Upload Identity Package
+  </h3>
+  <div class="modal-body">
+    <app-loader [active]="busy" message="Just a moment..."></app-loader>
+
+    <div class="flex flex-col w-full h-full">
+      <div class="flex flex-col w-full h-full" [ngClass]="{ 'hidden': mode !== 1 }">
+        <img src="assets/images/illustrations/clip/clip-uploading.png" alt="" width="400px" class="m-auto">  
+
+        <div class="mx-auto">
+          <button class="btn btn-primary mx-auto" size="sm" (click)="handleFileUpload()">
+            Select File
+            <clr-icon shape="file"></clr-icon>
+    
+            <input #uploadFile type="file" (change)="handleFileSelected($event)"  style="display:none;" />
+          </button>
+        </div>
+      </div>
+
+      <div class="flex w-full h-full" [ngClass]="{ 'hidden': mode === 1 }">
+        <div *ngIf="currentFile" class="flex-grow my-auto" [ngClass]="{ 'hidden': mode !== 2 }">
+          <h6 class="p5">
+            Uploading: 
+            <span class="text-primary font-bold">
+              {{currentFile.name}}
+            </span>
+          </h6>
+  
+          <clr-progress-bar [clrValue]="progress" clrMax="100" clrFlash="true"></clr-progress-bar>
+        </div>
+
+        <div *ngIf="mode === 2">
+          <img src="assets/images/illustrations/clip/clip-waiting.png" alt="" width="300px" class="m-auto">  
+          <h5 class="text-center">
+            Uploading Package...
+          </h5>
+        </div>
+
+        <div *ngIf="mode === 3">
+          <img src="assets/images/illustrations/clip/clip-virtual-reality.png" alt="" width="300px" class="m-auto">  
+          <h5 class="text-center my-0">
+            Done Uploading.
+          </h5>
+          <h6 class="text-center my-0">
+            Enter package credentials
+          </h6>
+
+          <!-- <h6 class="mt-0 text-left">
+            Data Region: 
+            <span class="text-primary">
+              {{currentPackage.dataRegion}}
+            </span>
+          </h6>
+
+          <h6 class="mt-0 text-left">
+            Total Users: 
+            <span class="text-primary">
+              {{currentPackage.count}}
+            </span>
+          </h6> -->
+        </div>
+
+        <div class="flex-grow my-auto" [ngClass]="{ 'hidden': mode !== 3 }">
+          <h4 class="text-primary font-bold" *ngIf="currentPackage">
+            {{currentPackage.dataRegion}}
+          </h4>
+
+          <h6 class="m-0">
+            <span class="text-primary" *ngIf="currentPackage">
+              {{currentPackage.count}}
+            </span> candidates
+          </h6>
+
+          <form [formGroup]="form" (submit)="handleImport($event)">
+            <clr-input-container>
+              <input type="text" name="username" clrInput placeholder="Username" formControlName="username" />
+              <clr-control-error *ngIf="username.getError('required')">This field is required.</clr-control-error>
+            </clr-input-container>
+            <clr-password-container>
+                <input type="password" name="password" clrPassword placeholder="Password" formControlName="password" />
+                <clr-control-error *ngIf="password.getError('required')">This field is required.</clr-control-error>
+            </clr-password-container>
+
+            <div class="mt-2">
+              <button class="btn btn-outline" (click)="handleGoBack($event)" [clrLoading]="loadingStats">
+                GO BACK
+              </button>
+              <button type="submit" class="btn btn-primary" [clrLoading]="loadingStats">
+                IMPORT
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="active = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="active = false">Ok</button>
+  </div> -->
+</clr-modal>

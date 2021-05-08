@@ -19,6 +19,8 @@ export class User {
   department?: string;
   nextOfKin?: string;
   dateOfBirth?: Date;
-  passport?: Photo;
-  signature?: Photo;
+  passport?: string;
+  signature?: string;
+  // passport?: Photo;
+  // signature?: Photo;
 }

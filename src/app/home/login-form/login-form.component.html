@@ -1,6 +1,6 @@
 <form class="login" [formGroup]="form">
     <app-loader [active]="loaderActive" [message]="loaderMessage" opacity=".7"></app-loader>
-    <img class="logo" src="assets/images/Nysc-Logo.png" alt="NYSC Logo" height="128px" width="auto"/>
+    <img class="logo h-24" src="assets/images/Nysc-Logo.png" alt="NYSC Logo" height="128px" width="auto"/>
     <section class="title">
         <h3 class="welcome">Welcome to the</h3>
         Official NYSC Portal
@@ -9,15 +9,23 @@
     <div class="login-group">
         <clr-select-container>
             <select clrSelect name="type" formControlName="role">
-                <option value="regularUser">Regular User</option>
-                <option value="administrator">Administrator</option>
+                <option value="RegularUser">Regular User</option>
+                <option value="Administrator">Administrator</option>
             </select>
         </clr-select-container>
 
         <clr-input-container>
-            <input type="text" name="username" clrInput placeholder="File Number" formControlName="username" />
+            <input type="text" name="username" clrInput [placeholder]="!isBackOffice ? 'File Number' : 'Username'" formControlName="username" />
             <clr-control-error *ngIf="username.getError('required')">This field is required.</clr-control-error>
-            <clr-control-error *ngIf="username.getError('pattern')">Only numbers are allowed.</clr-control-error>
+            <clr-control-error *ngIf="username.getError('pattern')">
+              <span *ngIf="!isBackOffice">
+                Only numbers are allowed.
+              </span>
+
+              <span *ngIf="isBackOffice">
+                Invalid username format: Use only lowercase characters and the following symbols are permitted: . _
+              </span>
+            </clr-control-error>
         </clr-input-container>
         <clr-password-container>
             <input type="password" name="password" clrPassword placeholder="Password" formControlName="password" />

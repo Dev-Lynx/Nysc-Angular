@@ -17,7 +17,7 @@ export class ImageControlComponent implements OnInit, AfterViewInit {
   @Input() controlLabel: string;
   @Input() imageSource: string;
   @Input() imageDescription = 'Image';
-  @Input() height: number;
+  @Input() height: number = 128;
   @Input() uploadRoute: string;
   //#endregion
 

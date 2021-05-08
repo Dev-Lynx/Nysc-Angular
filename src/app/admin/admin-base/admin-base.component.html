@@ -1,0 +1,50 @@
+
+<clr-main-container class="main-container">
+  <!-- <clr-alerts>
+    <clr-alert *ngFor="let alert of alertService.alerts"
+               [clrAlertType]="alert.type"
+               [clrAlertAppLevel]="true"
+               [clrAlertClosable]="alert.closable">
+      <div class="alert-item">
+        <span class="alert-text">{{alert.text}}</span>
+        <div class="alert-actions"
+             *ngIf="alert.action">
+          <button class="btn alert-action">{{alert.action}}</button>
+        </div>
+      </div>
+    </clr-alert>
+  </clr-alerts> -->
+
+  <!-- <app-admin-nav></app-admin-nav> -->
+  <app-nav [isHQ]="true"></app-nav>
+
+  <!-- <app-loader [active]="userForm.busy" [message]="userForm.busyMessage"></app-loader> -->
+<!--
+  <div class="wt-bg"></div>
+  <div class="img-bg"></div>
+-->
+
+  <!-- <div class="content-container">
+      <div class="content-area">        
+        
+          <app-user-form #userForm></app-user-form>
+      </div>
+  </div> -->
+
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <section class="nav-group">
+          <ul class="nav-list">
+            <li><a class="nav-link active">Candidates</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav>
+    
+  </div>
+</clr-main-container>

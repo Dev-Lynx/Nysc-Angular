@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "serve": "npm run build:css && ng serve",
+    "build": "npm run build:css && ng build",
+    "publish": "npm run build:css && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:css": "tailwindcss build src/assets/styles/tailwind.css -o src/assets/styles/tailwind.min.css && npm run min:css",
+    "min:css": "cleancss src/assets/styles/tailwind.min.css -o src/assets/styles/tailwind.min.css"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +32,11 @@
     "core-js": "^2.6.12",
     "json2typescript": "^1.4.1",
     "ng2-file-upload": "^1.4.0",
+    "postcss": "^8.2.14",
+    "postcss-import": "^14.0.1",
+    "property-watch-decorator": "^1.2.5",
     "rxjs": "^6.6.7",
+    "tailwindcss": "^2.1.2",
     "tslib": "^1.14.1",
     "zone.js": "~0.8.26"
   },
