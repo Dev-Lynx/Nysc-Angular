@@ -25,7 +25,7 @@ export class AuthService {
   verificationSent = false;
   
   get role() {
-    return this.accessToken.rol;
+    return !!this.accessToken ? this.accessToken.rol : "RegularUser";
   }
 
   constructor(private http: HttpClient, private router: Router) { }

@@ -11,7 +11,7 @@ import { AdminBaseComponent } from "./admin/admin-base/admin-base.component";
 import { HqDashboardComponent } from "./admin/hq-dashboard/hq-dashboard.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   {
     path: 'login',
     component: LoginComponent,
@@ -24,21 +24,21 @@ const routes: Routes = [
     ]
   },
   {
-    path: "hq",
-    component: AdminBaseComponent,
-    children: [
-      { path: "", component: HqDashboardComponent }
-    ]
-  },
-  {
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent  }
+      { path: 'dashboard', component: DashboardComponent  },
+      {
+        path: "hq",
+        component: AdminBaseComponent,
+        children: [
+          { path: "", component: HqDashboardComponent }
+        ]
+      },
     ]
   },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
   // { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

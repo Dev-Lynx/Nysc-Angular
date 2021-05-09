@@ -11,14 +11,35 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     if (this.authService.loggedIn() && this.authService.userVerified()) {
-      return true;
+      // return true;
+
+      console.log("Activating", route.firstChild);
+    
+
+      const url = route.firstChild.url[0].path;
+      console.log(`'${url}'`, "IsAdmin?", url === "hq" && this.authService.role === "Administrator");
+      
+      if (url === "hq" && this.authService.role === "Administrator") {
+        return true;
+      } else if (this.authService.role === "RegularUser" && url !== "hq") {
+        return true;
+      }
+      // return true;
     }
 
-    console.log("Activating", route.url);
+    console.log("Skipping");
+    // const chunks = url.split("/");
+
+    // for (const chunk in chunks) {
+    //   if (chunk === "") {
+    //     continue;
+    //   }
+    // }
 
     // if (route.url)
     
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
+    console.log("Going to login");
     return false;
   }
 }
