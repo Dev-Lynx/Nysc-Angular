@@ -19,11 +19,11 @@ import { environment } from '../environments/environment';
 import {TokenInterceptor} from './_services/interceptor';
 import { ImageControlComponent } from './utils/image-control/image-control.component';
 import {FileUploadModule} from 'ng2-file-upload';
-import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { ErrorPageComponent } from './utils/error-page/error-page.component';
 import { PhoneRegistrationComponent } from './home/phone-registration/phone-registration.component';
 import { AdminModule } from './admin/admin.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
+import { ProfileComponent } from './home/profile/profile.component';
 
 
 @NgModule({
@@ -36,7 +36,8 @@ import { InfrastructureModule } from './infrastructure/infrastructure.module';
       PhoneVerificationComponent,
       ImageControlComponent,
       ErrorPageComponent,
-      PhoneRegistrationComponent
+      PhoneRegistrationComponent,
+      ProfileComponent
    ],
   imports: [
     BrowserModule,
@@ -53,7 +54,6 @@ import { InfrastructureModule } from './infrastructure/infrastructure.module';
         blacklistedRoutes: [environment.apiBase + 'auth']
       }
     }),
-    RoundProgressModule,
     FileUploadModule,
     AdminModule,
     InfrastructureModule

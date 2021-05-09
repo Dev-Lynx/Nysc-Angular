@@ -10,17 +10,17 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ClarityModule } from '@clr/angular';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import {FileUploadModule} from 'ng2-file-upload';
 
 import { NavComponent } from "../infrastructure/common/nav/nav.component";
 import { LoaderComponent } from "src/app/infrastructure/common/loader/loader.component";
+import { DashboardComponent } from './common/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     LoaderComponent,
-    NavComponent
+    NavComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -39,12 +39,13 @@ import { LoaderComponent } from "src/app/infrastructure/common/loader/loader.com
         blacklistedRoutes: [environment.apiBase + 'auth']
       }
     }),
-    RoundProgressModule,
     FileUploadModule,
   ],
   exports: [
     LoaderComponent,
-    NavComponent
+    NavComponent,
+    DashboardComponent
+
   ]
 })
 export class InfrastructureModule { }

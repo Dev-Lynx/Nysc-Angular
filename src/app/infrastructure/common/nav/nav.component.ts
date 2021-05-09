@@ -8,7 +8,9 @@ import {AuthService} from "../../../_services/auth.service";
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  @Input() isHQ = false;
+  get isHQ() {
+    return this.auth.role !== "RegularUser";
+  }
 
   constructor(private auth: AuthService, 
     public alertService: AlertService) { }

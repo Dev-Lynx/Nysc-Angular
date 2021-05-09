@@ -1,0 +1,25 @@
+<clr-main-container class="main-container">
+  <app-nav></app-nav>
+
+  <app-loader [active]="busy" [message]="busyMessage"></app-loader>
+
+  <div class="content-container">
+    <div class="content-area">        
+        <router-outlet></router-outlet>
+    </div>
+
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <section class="nav-group">
+          <ul class="nav-list" *ngIf="isHQ">
+            <li><a class="nav-link active">Candidates</a></li>
+          </ul>
+
+          <ul class="nav-list" *ngIf="!isHQ">
+            <li><a class="nav-link active">Profile</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav>
+</div>
+</clr-main-container>

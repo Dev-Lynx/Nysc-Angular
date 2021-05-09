@@ -1,0 +1,43 @@
+<div class="flex">
+  <app-loader [active]="busy" message="Please wait..."></app-loader>
+
+  <div *ngIf="!!user" class="w-full flex flex-col mt-4">
+    <section class="title">
+      <h1>
+        <h1>Hello {{user.lastName}}!</h1>
+      </h1>
+    </section>
+
+    <app-image-control uploadLabel="Upload"
+                        uploadRoute="uploadPassport"
+                        [imageSource]="passportSource">
+    </app-image-control>
+
+    <clr-tooltip>
+      <label class="clr-control-label">Passport</label>
+      <clr-icon clrTooltipTrigger shape="info-circle" size="18"></clr-icon>
+      <clr-tooltip-content [clrSize]="1024 > 768 ? 'lg' : 'sm'" clrPosition="bottom-right" *clrIfOpen>
+        <span>Upload Specifications</span>
+        <br><br>
+        <ul>
+          <li>Image should be taken in a white background.</li>
+          <li>Image should not be larger than 2MB.</li>
+        </ul>
+      </clr-tooltip-content>
+    </clr-tooltip>
+
+    <div class="flex">
+      <h2>
+        {{user.lastName}}
+      </h2>
+
+      <h2>
+        {{user.otherNames}}
+      </h2>
+    </div>
+    
+
+  </div>
+
+
+</div>
