@@ -7,13 +7,16 @@
 .img-upload {
   /*border: solid 0.5px #006A91;*/
   overflow: hidden;
-  box-shadow: 0px 0px 0px 1px #0079b8;
   position: relative;
 
   -webkit-transition: box-shadow .5s ease-in-out;
   -moz-transition: box-shadow .5s ease-in-out;
   -o-transition: box-shadow .5s ease-in-out;
   transition: box-shadow .5s ease-in-out;
+}
+
+.img-upload.bordered {
+  box-shadow: 0px 0px 0px 1px #0079b8;
 }
 
 .img-upload.fileOver {

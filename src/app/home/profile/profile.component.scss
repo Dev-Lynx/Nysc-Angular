@@ -1,0 +1,18 @@
+clr-tooltip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: .3rem;
+}
+
+.user-profile {
+  margin: 0px auto;
+
+  section {
+    display: flex;
+    
+    h5 {
+      width: 200px;
+    }
+  }
+}

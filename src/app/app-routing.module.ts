@@ -12,6 +12,7 @@ import { HqDashboardComponent } from "./admin/hq-dashboard/hq-dashboard.componen
 import { DashboardComponent } from "./infrastructure/common/dashboard/dashboard.component";
 import { UserFormComponent } from "./user-form/user-form.component";
 import { ProfileComponent } from "./home/profile/profile.component";
+import { ApplicationComponent } from "./home/application/application.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -33,6 +34,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'dashboard', component: ProfileComponent  },
+      { path: 'apply', component: ApplicationComponent },
       {
         path: "hq",
         component: HqDashboardComponent,

@@ -21,6 +21,9 @@ export class User {
   dateOfBirth?: Date;
   passport?: string;
   signature?: string;
+
+  dataRegion?: string;
+  bloodGroup?: string;
   // passport?: Photo;
   // signature?: Photo;
 }

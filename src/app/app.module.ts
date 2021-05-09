@@ -24,6 +24,7 @@ import { PhoneRegistrationComponent } from './home/phone-registration/phone-regi
 import { AdminModule } from './admin/admin.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { ProfileComponent } from './home/profile/profile.component';
+import { ApplicationComponent } from './home/application/application.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ProfileComponent } from './home/profile/profile.component';
       ImageControlComponent,
       ErrorPageComponent,
       PhoneRegistrationComponent,
-      ProfileComponent
+      ProfileComponent,
+      ApplicationComponent
    ],
   imports: [
     BrowserModule,

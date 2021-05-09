@@ -1,5 +1,5 @@
 <div [uploader]="uploader" (onFileDrop)="fileSelected($event)" (fileOver)="fileOverBase($event)" class="zero" ng2FileDrop>
-  <div class="img-upload" [ngClass]="{'fileOver': hasBaseDropZoneOver}">
+  <div class="img-upload" [ngClass]="{'fileOver': hasBaseDropZoneOver, 'bordered': hasBorder}">
     <app-loader [active]="uploader.isUploading"></app-loader>
 
     <img src="{{imageSource}}" alt="" width="auto" class="w-auto" [ngStyle]="{ 'height': height + 'px' }">

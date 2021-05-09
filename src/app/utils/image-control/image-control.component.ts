@@ -19,6 +19,8 @@ export class ImageControlComponent implements OnInit, AfterViewInit {
   @Input() imageDescription = 'Image';
   @Input() height: number = 128;
   @Input() uploadRoute: string;
+
+  @Input() hasBorder = true;
   //#endregion
 
   baseUrl = environment.apiBase + 'photos/';

@@ -8,7 +8,7 @@
         <router-outlet></router-outlet>
     </div>
 
-    <nav class="sidenav">
+    <!-- <nav class="sidenav">
       <section class="sidenav-content">
         <section class="nav-group">
           <ul class="nav-list" *ngIf="isHQ">
@@ -17,9 +17,22 @@
 
           <ul class="nav-list" *ngIf="!isHQ">
             <li><a class="nav-link active">Profile</a></li>
+
+            <li>
+              <a class="nav-link">
+                Apply
+              </a>
+            </li>
           </ul>
         </section>
       </section>
-    </nav>
+    </nav> -->
+
+    <clr-vertical-nav>
+      <a clrVerticalNavLink routerLink="/dashboard" routerLinkActive="active">Profile</a>
+      <a clrVerticalNavLink routerLink="/apply" routerLinkActive="active">Apply</a>
+      <!-- <div class="nav-divider"></div> -->
+      <!-- <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">Credit</a> -->
+    </clr-vertical-nav>
 </div>
 </clr-main-container>

@@ -1,12 +1,12 @@
-<div class="flex">
+<div class="flex user-profile">
   <app-loader [active]="busy" message="Please wait..."></app-loader>
 
-  <div *ngIf="!!user" class="w-full flex flex-col mt-4">
-    <section class="title">
+  <div *ngIf="!!user" class="flex flex-col mt-4 mx-auto">
+    <!-- <section class="title">
       <h1>
         <h1>Hello {{user.lastName}}!</h1>
       </h1>
-    </section>
+    </section> -->
 
     <app-image-control uploadLabel="Upload"
                         uploadRoute="uploadPassport"
@@ -16,7 +16,7 @@
     <clr-tooltip>
       <label class="clr-control-label">Passport</label>
       <clr-icon clrTooltipTrigger shape="info-circle" size="18"></clr-icon>
-      <clr-tooltip-content [clrSize]="1024 > 768 ? 'lg' : 'sm'" clrPosition="bottom-right" *clrIfOpen>
+      <clr-tooltip-content [clrSize]="dv.ddt ? 'lg' : 'sm'" clrPosition="bottom-right" *clrIfOpen>
         <span>Upload Specifications</span>
         <br><br>
         <ul>
@@ -26,17 +26,69 @@
       </clr-tooltip-content>
     </clr-tooltip>
 
-    <div class="flex">
-      <h2>
+    <section class="mt-1">
+      <h5>
+        Full Name:
+      </h5>
+
+      <h6>
         {{user.lastName}}
-      </h2>
+      </h6>
 
-      <h2>
+      <h6>
         {{user.otherNames}}
-      </h2>
-    </div>
-    
+      </h6>
+    </section>
 
+    <section>
+      <h5>
+        Phone Number:
+      </h5>
+
+      <h6>
+        {{user.phoneNumber}}
+      </h6>
+    </section>
+
+    <section>
+      <h5>
+        State Of Origin:
+      </h5>
+
+      <h6>
+        {{user.stateOfOrigin}}
+      </h6>
+    </section>
+
+    <section>
+      <h5>
+        Data Region:
+      </h5>
+
+      <h6 class="text-primary">
+        {{user.dataRegion}}
+      </h6>
+    </section>
+
+    <section>
+      <h5>
+        Blood Group
+      </h5>
+
+      <h6>
+        {{user.bloodGroup}}
+      </h6>
+    </section>
+
+    <section class="flex flex-col">
+      <h6 class="text-center">Signature</h6>
+
+      <app-image-control uploadLabel="Upload"
+                          uploadRoute="uploadPassport"
+                          [hasBorder]="false"
+                          [imageSource]="user.signature">
+      </app-image-control>
+    </section>
   </div>
 
 
