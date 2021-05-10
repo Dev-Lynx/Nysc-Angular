@@ -30,8 +30,7 @@
             "scripts": [
               "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
               "node_modules/@clr/icons/clr-icons.min.js"
-            ],
-            "es5BrowserSupport": true
+            ]           
           },
           "configurations": {
             "production": {
@@ -63,11 +62,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular8:build"
+            "browserTarget": "Nysc-Angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular8:build:production"
+              "browserTarget": "Nysc-Angular:build:production"
             }
           }
         },
