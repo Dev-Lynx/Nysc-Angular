@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserFormComponent } from './user-form/user-form.component';
@@ -25,12 +24,12 @@ import { AdminModule } from './admin/admin.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { ProfileComponent } from './home/profile/profile.component';
 import { ApplicationComponent } from './home/application/application.component';
+import { SettingsComponent } from './home/settings/settings.component';
 
 
 @NgModule({
    declarations: [
       AppComponent,
-      DashboardComponent,
       UserFormComponent,
       LoginComponent,
       LoginFormComponent,
@@ -39,7 +38,8 @@ import { ApplicationComponent } from './home/application/application.component';
       ErrorPageComponent,
       PhoneRegistrationComponent,
       ProfileComponent,
-      ApplicationComponent
+      ApplicationComponent,
+      SettingsComponent
    ],
   imports: [
     BrowserModule,

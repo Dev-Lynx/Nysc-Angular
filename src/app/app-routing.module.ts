@@ -13,6 +13,7 @@ import { DashboardComponent } from "./infrastructure/common/dashboard/dashboard.
 import { UserFormComponent } from "./user-form/user-form.component";
 import { ProfileComponent } from "./home/profile/profile.component";
 import { ApplicationComponent } from "./home/application/application.component";
+import { SettingsComponent } from "./home/settings/settings.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -35,6 +36,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: ProfileComponent  },
       { path: 'apply', component: ApplicationComponent },
+      { path: 'settings', component: SettingsComponent },
       {
         path: "hq",
         component: HqDashboardComponent,
