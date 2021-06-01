@@ -14,6 +14,7 @@ import { UserFormComponent } from "./user-form/user-form.component";
 import { ProfileComponent } from "./home/profile/profile.component";
 import { ApplicationComponent } from "./home/application/application.component";
 import { SettingsComponent } from "./home/settings/settings.component";
+import { ComingSoonComponent } from "./admin/coming-soon/coming-soon.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -37,13 +38,18 @@ const routes: Routes = [
       { path: 'dashboard', component: ProfileComponent  },
       { path: 'apply', component: ApplicationComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: "hq", redirectTo: "hq/candidates" },
       {
-        path: "hq",
+        path: "hq/candidates",
         component: HqDashboardComponent,
         // children: [
         //   { path: "", component: HqDashboardComponent }
         // ]
       },
+
+      { path: "hq/applications", component: ComingSoonComponent },
+      { path: "hq/packages", component: ComingSoonComponent },
+      { path: "hq/management", component: ComingSoonComponent }
     ]
   },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }

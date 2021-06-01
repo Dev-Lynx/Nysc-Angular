@@ -28,7 +28,7 @@
       </section>
     </nav> -->
 
-    <clr-vertical-nav>
+    <clr-vertical-nav *ngIf="!isHQ;else hq">
       <a clrVerticalNavLink routerLink="/dashboard" routerLinkActive="active">
         <i class='bx bxs-user-circle' ></i>
         Profile
@@ -44,5 +44,30 @@
       <!-- <div class="nav-divider"></div> -->
       <!-- <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">Credit</a> -->
     </clr-vertical-nav>
+
+    <ng-template #hq>
+      <clr-vertical-nav>
+        <a clrVerticalNavLink routerLink="/hq/candidates" routerLinkActive="active">
+          <i class='bx bxs-user-circle' ></i>
+          Candidates
+        </a>
+        <a clrVerticalNavLink routerLink="/hq/applications" routerLinkActive="active">
+          <i class='bx bxs-pen' ></i>
+          Applications
+        </a>
+
+        <a clrVerticalNavLink routerLink="/hq/packages" routerLinkActive="active">
+          <i class='bx bxs-package'></i>
+          Packages
+        </a>
+
+        <a clrVerticalNavLink routerLink="/hq/management" routerLinkActive="active">
+          <i class='bx bxs-coffee' ></i>
+          Management
+        </a>
+        <!-- <div class="nav-divider"></div> -->
+        <!-- <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">Credit</a> -->
+      </clr-vertical-nav>
+    </ng-template>
 </div>
 </clr-main-container>

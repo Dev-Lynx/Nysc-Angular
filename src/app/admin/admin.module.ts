@@ -14,12 +14,14 @@ import {FileUploadModule} from 'ng2-file-upload';
 import { InfrastructureModule } from "src/app/infrastructure/infrastructure.module";
 import { HqDashboardComponent } from './hq-dashboard/hq-dashboard.component';
 import { HqPackageDialogComponent } from './hq-package-dialog/hq-package-dialog.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
     AdminBaseComponent,
     HqDashboardComponent,
-    HqPackageDialogComponent
+    HqPackageDialogComponent,
+    ComingSoonComponent
   ],
   imports: [
     CommonModule,

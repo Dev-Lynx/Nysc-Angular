@@ -45,7 +45,7 @@ export class PhoneRegistrationComponent implements OnInit {
     this.router.navigate(["../"]);
   }
 
-  continue() {
+  async continue() {
     if (!this.form.valid) {
       this.form.markAsDirty();
       return;
@@ -58,7 +58,7 @@ export class PhoneRegistrationComponent implements OnInit {
       console.log(this.account.user);
       
       if (this.auth.verificationSent) {
-        this.auth.sendVerification(this.account.user.phoneNumber);
+        await this.auth.sendVerification(this.account.user.phoneNumber);
           // .subscribe(() => { this.activateTimer(); }, error => console.error(error));
       }
 

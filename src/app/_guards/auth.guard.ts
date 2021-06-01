@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     
 
       const url = route.firstChild.url[0].path;
-      console.log(`'${url}'`, "IsAdmin?", url === "hq" && this.authService.role === "Administrator");
+      console.log(`'${url}'`, "IsAdmin?", url === "hq" && this.authService.role === "Administrator", this.authService.role);
       
       if (url === "hq" && this.authService.role === "Administrator") {
         return true;
